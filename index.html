@@ -1,0 +1,279 @@
+<!doctype html>
+<html lang="ur">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>MyPortfolio — Ali Raza Memon</title>
+  <!-- Tailwind CDN (quick prototyping) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <meta name="theme-color" content="#0f1724">
+  <style>
+    /* Extra small custom styles to complement Tailwind
+       Kept minimal so Tailwind handles the heavy lifting. */
+    :root{--brand:#00f9aa;--muted:#94a3b8}
+
+    /* profile ring effect (gradient + spin + subtle blur) */
+    .profile-wrap{position:relative;display:inline-block}
+    .ring-anim{position:absolute;inset:0;display:block;border-radius:9999px}
+    .ring-1{width:160px;height:160px;left:50%;transform:translateX(-50%);top:0}
+    .ring-2{width:200px;height:200px;left:50%;transform:translateX(-50%);top:-12px}
+    /* ensure image sits above rings */
+    .profile-img{position:relative;z-index:10}
+
+    /* small accessibility focus outline for keyboard users */
+    .focus-outline:focus{outline:3px solid rgba(0,249,170,0.22);outline-offset:4px}
+
+    /* simple dark-mode overrides (we toggle .dark on <html>) */
+    html.dark{background:#071029;color:#e6eefc}
+    html.dark .card{background:#0b1430}
+    html.dark .nav{background:#06233d}
+    html.dark .btn-primary{background:linear-gradient(90deg,#00f9aa,#04878e)}
+    html.dark .lead{opacity:0.9}
+
+    /* minor tweak to smooth image loading */
+    .profile-img{object-fit:cover;border-radius:9999px;border:6px solid rgba(255,255,255,0.06)}
+
+    /* keep nav above animated rings on small screens */
+    nav{z-index:60}
+  </style>
+</head>
+<body class="antialiased text-slate-800 bg-white">
+
+  <!-- NAV -->
+  <nav class="nav bg-slate-900 text-white sticky top-0">
+    <div class="container mx-auto px-4 py-3 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="brand font-semibold text-lg">MyPortfolio</div>
+        <div class="hidden md:block text-slate-300">— Ali Raza Memon</div>
+      </div>
+
+      <div class="flex items-center gap-3">
+        <button id="themeToggle" aria-pressed="false" class="focus-outline p-2 rounded-md text-sm bg-slate-800/60 hover:bg-slate-800/70" title="Toggle dark / light">Dark / Light</button>
+
+        <button id="menuBtn" aria-expanded="false" aria-controls="navLinks" class="md:hidden p-2 focus-outline rounded-md bg-slate-800/40"> 
+          <span class="sr-only">Toggle menu</span>
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+        </button>
+
+        <ul id="navLinks" class="hidden md:flex gap-4 items-center text-slate-200">
+          <li><a class="hover:underline focus-outline px-2 py-1 rounded" href="#home">home</a></li>
+          <li><a class="hover:underline focus-outline px-2 py-1 rounded" href="#about">about</a></li>
+          <li><a class="hover:underline focus-outline px-2 py-1 rounded" href="#skills">skills</a></li>
+          <li><a class="hover:underline focus-outline px-2 py-1 rounded" href="#projects">projects</a></li>
+          <li><a class="hover:underline focus-outline px-2 py-1 rounded" href="#contact">contact</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header id="home" class="hero text-center py-12 bg-gradient-to-b from-slate-900 to-slate-800 text-white">
+    <div class="container mx-auto px-4">
+      <!-- Profile with animated rings (Tailwind + small custom CSS) -->
+      <div class="profile-wrap mx-auto mb-4 relative" style="width:160px;">
+        <!-- outer animated ring (slow spin + gradient) -->
+        <span class="ring-anim ring-2 absolute -z-10 rounded-full bg-gradient-to-r from-cyan-400 via-emerald-400 to-sky-500 opacity-40 animate-spin-slow blur-sm" style="filter:blur(12px);"></span>
+        <span class="ring-anim ring-1 absolute -z-20 rounded-full bg-gradient-to-r from-purple-400 via-pink-400 to-yellow-300 opacity-25 animate-spin-slower" style="filter:blur(18px);"></span>
+
+        <!-- Profile image with smooth bouncing animation + hover scale -->
+        <img src="aliraza.jpg" alt="Ali Raza Memon — profile photo" width="160" height="160" class="profile-img w-40 h-40 mx-auto block object-cover transform transition-transform duration-700 hover:scale-105 bounce-anim" />
+      </div>
+
+      <h1 class="text-2xl font-bold mb-1">Ali Raza Memon</h1>
+      <p class="lead text-slate-200 mb-4">I build responsive and modern websites — skilled in HTML, CSS & JavaScript.</p>
+
+      <div class="flex flex-col sm:flex-row gap-3 justify-center">
+        <a href="#projects" class="btn-primary inline-block px-4 py-2 rounded-md text-white font-semibold shadow-md">View My Projects</a>
+        <a href="#contact" class="inline-block px-4 py-2 rounded-md border border-white/10 text-white/90">Contact Me</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN -->
+  <main class="container mx-auto px-4 py-8">
+
+    <section id="about" class="card bg-white rounded-xl p-6 mb-6 shadow">
+      <h2 class="text-xl font-semibold mb-3">About Me</h2>
+      <p class="text-slate-700 leading-relaxed">I am a passionate web developer focused on creating clean UI and great UX. I use front-end technologies — HTML, CSS, and JavaScript — to build interactive experiences. I build responsive, accessible, and performance-minded websites.</p>
+    </section>
+
+    <section id="skills" class="card bg-white rounded-xl p-6 mb-6 shadow">
+      <h2 class="text-xl font-semibold mb-3">Skills</h2>
+      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
+        <div class="p-3 bg-slate-50 rounded-md font-semibold text-center">HTML</div>
+        <div class="p-3 bg-slate-50 rounded-md font-semibold text-center">CSS</div>
+        <div class="p-3 bg-slate-50 rounded-md font-semibold text-center">JavaScript</div>
+        <div class="p-3 bg-slate-50 rounded-md font-semibold text-center">Responsive Design</div>
+        <div class="p-3 bg-slate-50 rounded-md font-semibold text-center">React (Basic)</div>
+        <div class="p-3 bg-slate-50 rounded-md font-semibold text-center">Node.js (Basic)</div>
+      </div>
+    </section>
+
+    <section id="projects" class="card bg-white rounded-xl p-6 mb-6 shadow">
+      <h2 class="text-xl font-semibold mb-3">Projects</h2>
+      <div class="grid md:grid-cols-3 gap-4">
+
+        <article class="p-4 rounded-lg border border-slate-100 bg-gradient-to-b from-white to-slate-50">
+          <h3 class="font-semibold mb-2">Portfolio Website</h3>
+          <p class="text-sm text-slate-600 mb-3">Personal portfolio to showcase work, responsive layout and contact form.</p>
+          <div class="flex gap-2">
+            <a href="#" class="px-3 py-1 rounded bg-slate-800 text-white text-sm" data-demo>Demo</a>
+            <a href="#" class="px-3 py-1 rounded border text-sm" data-code>Code</a>
+          </div>
+        </article>
+
+        <article class="p-4 rounded-lg border border-slate-100 bg-gradient-to-b from-white to-slate-50">
+          <h3 class="font-semibold mb-2">E-commerce Demo</h3>
+          <p class="text-sm text-slate-600 mb-3">Responsive shop layout with product cards and cart UI (frontend demo).</p>
+          <div class="flex gap-2">
+            <a href="#" class="px-3 py-1 rounded bg-slate-800 text-white text-sm" data-demo>Demo</a>
+            <a href="#" class="px-3 py-1 rounded border text-sm" data-code>Code</a>
+          </div>
+        </article>
+
+        <article class="p-4 rounded-lg border border-slate-100 bg-gradient-to-b from-white to-slate-50">
+          <h3 class="font-semibold mb-2">Blog Platform</h3>
+          <p class="text-sm text-slate-600 mb-3">Simple blog UI with posts listing and post detail pages (frontend).</p>
+          <div class="flex gap-2">
+            <a href="#" class="px-3 py-1 rounded bg-slate-800 text-white text-sm" data-demo>Demo</a>
+            <a href="#" class="px-3 py-1 rounded border text-sm" data-code>Code</a>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <section id="contact" class="card bg-white rounded-xl p-6 mb-6 shadow">
+      <h2 class="text-xl font-semibold mb-3">Contact</h2>
+
+      <form id="contactForm" class="max-w-lg" novalidate>
+        <div class="mb-3">
+          <label class="block mb-1 font-medium">Name</label>
+          <input id="name" type="text" required class="w-full rounded-md border px-3 py-2" />
+        </div>
+        <div class="mb-3">
+          <label class="block mb-1 font-medium">Email</label>
+          <input id="email" type="email" required class="w-full rounded-md border px-3 py-2" />
+        </div>
+        <div class="mb-3">
+          <label class="block mb-1 font-medium">Message</label>
+          <textarea id="message" rows="5" required class="w-full rounded-md border px-3 py-2"></textarea>
+        </div>
+        <div>
+          <button type="submit" class="px-4 py-2 rounded-md bg-emerald-500 text-white">Submit</button>
+        </div>
+        <p id="formMsg" class="mt-2 font-semibold" aria-live="polite"></p>
+      </form>
+
+      <div class="mt-6 text-sm text-slate-600">
+        <p><strong>Email:</strong> <a href="mailto:alirazamemon2006@gmail.com" class="underline">alirazamemon2006@gmail.com</a></p>
+        <p><strong>Phone:</strong> <a href="tel:+923242790751" class="underline">+92-324-2790751</a></p>
+        <p class="mt-2">
+          <strong>GitHub:</strong> <a target="_blank" rel="noopener" href="https://github.com/ali-raza" class="underline">github.com/AliRaza</a> |
+          <strong>LinkedIn:</strong> <a target="_blank" rel="noopener" href="https://linkedin.com/in/ali-raza" class="underline">linkedin.com/in/AliRaza</a>
+        </p>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="py-6 text-center text-sm text-slate-500">
+    <div class="container mx-auto px-4">&copy; 2006 Ali Raza Memon — All rights reserved.</div>
+  </footer>
+
+  <!-- Scripts: keep JS minimal and robust -->
+  <script>
+    // small helpers
+    const qS = sel => document.querySelector(sel);
+    const qSA = sel => Array.from(document.querySelectorAll(sel));
+
+    document.addEventListener('DOMContentLoaded', function(){
+      const menuBtn = qS('#menuBtn');
+      const navLinks = qS('#navLinks');
+      const themeBtn = qS('#themeToggle');
+      const htmlEl = document.documentElement;
+      const saved = localStorage.getItem('portfolio-dark');
+
+      // apply saved theme
+      if (saved === '1') {
+        htmlEl.classList.add('dark');
+        themeBtn.setAttribute('aria-pressed','true');
+      }
+
+      // menu toggle
+      menuBtn?.addEventListener('click', () => {
+        const expanded = menuBtn.getAttribute('aria-expanded') === 'true';
+        menuBtn.setAttribute('aria-expanded', String(!expanded));
+        navLinks.classList.toggle('hidden');
+      });
+
+      // theme toggle
+      themeBtn?.addEventListener('click', () => {
+        const isDark = htmlEl.classList.toggle('dark');
+        themeBtn.setAttribute('aria-pressed', String(isDark));
+        localStorage.setItem('portfolio-dark', isDark ? '1' : '0');
+      });
+
+      // Smooth scroll (only for on-page links)
+      qSA('a[href^="#"]').forEach(a => {
+        a.addEventListener('click', function(e){
+          const href = this.getAttribute('href');
+          if (href === '#') return;
+          const target = document.querySelector(href);
+          if (target) {
+            e.preventDefault();
+            target.scrollIntoView({behavior:'smooth', block:'start'});
+            // hide mobile menu if open
+            if (!navLinks.classList.contains('hidden') && window.innerWidth < 768) {
+              navLinks.classList.add('hidden');
+              menuBtn?.setAttribute('aria-expanded','false');
+            }
+          }
+        });
+      });
+
+      // contact form validation
+      const form = qS('#contactForm');
+      const formMsg = qS('#formMsg');
+      form?.addEventListener('submit', function(e){
+        e.preventDefault();
+        const name = qS('#name').value.trim();
+        const email = qS('#email').value.trim();
+        const message = qS('#message').value.trim();
+        if (!name || !email || !message) {
+          formMsg.textContent = 'براہِ مہربانی تمام فیلڈز بھریں۔';
+          formMsg.style.color = '#b91c1c';
+          return;
+        }
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailPattern.test(email)) {
+          formMsg.textContent = 'درست ای میل درج کریں۔';
+          formMsg.style.color = '#b91c1c';
+          return;
+        }
+        // fake submit (replace with real endpoint later)
+        formMsg.textContent = 'آپ کا پیغام بھیج دیا گیا — شکریہ! (demo)';
+        formMsg.style.color = '#065f46';
+        form.reset();
+      });
+
+      // demo/code buttons
+      qSA('[data-demo], [data-code]').forEach(btn => {
+        btn.addEventListener('click', e => {
+          e.preventDefault();
+          alert('یہ صرف demo لنک ہے۔ یہاں اپنی live demo یا code repository کا URL ڈالیں۔');
+        });
+      });
+
+    });
+
+    // tiny Tailwind-friendly slow spin utilities (not provided by CDN default)
+    (function(){
+      const style = document.createElement('style');
+      style.textContent = `@keyframes spin-slow{from{transform:rotate(0)}to{transform:rotate(360deg)}}@keyframes spin-slower{from{transform:rotate(0)}to{transform:rotate(-360deg)}}.animate-spin-slow{animation:spin-slow 12s linear infinite}.animate-spin-slower{animation:spin-slower 20s linear infinite}@keyframes bounce-slow{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}.bounce-anim{animation:bounce-slow 2.6s ease-in-out infinite}`;
+      document.head.appendChild(style);
+    })();
+  </script>
+
+</body>
+</html>
